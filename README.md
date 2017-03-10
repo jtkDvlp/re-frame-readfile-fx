@@ -3,7 +3,7 @@
 
 # Readfile effect handler for re-frame
 
-This [re-frame](https://github.com/Day8/re-frame) library contains an [FileReader-Object](https://developer.mozilla.org/de/docs/Web/API/FileReader) [effect handler]((https://github.com/Day8/re-frame/tree/develop/docs)). The handler can be addressed by `:readfile`.
+This [re-frame](https://github.com/Day8/re-frame) library contains an [FileReader-Object](https://developer.mozilla.org/de/docs/Web/API/FileReader) [effect handler](https://github.com/Day8/re-frame/tree/develop/docs). The handler can be addressed by `:readfile`.
 
 ## Usage
 
