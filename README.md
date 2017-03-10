@@ -7,6 +7,11 @@ This [re-frame](https://github.com/Day8/re-frame) library contains an [FileReade
 
 ## Usage
 
+### Get it / add dependency
+
+Add the following dependency to your `project.cljs`:<br>
+[![Clojars Project](https://img.shields.io/clojars/v/re-frame-readfile-fx.svg)](https://clojars.org/re-frame-readfile-fx)
+
 ...will follow...
 
 ## Appendix
