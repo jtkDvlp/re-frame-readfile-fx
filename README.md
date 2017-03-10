@@ -5,12 +5,14 @@
 
 This [re-frame](https://github.com/Day8/re-frame) library contains an [FileReader-Object](https://developer.mozilla.org/docs/Web/API/FileReader) [effect handler](https://github.com/Day8/re-frame/tree/develop/docs). The handler can be addressed by `:readfile`.
 
-## Usage
+## Getting started
 
 ### Get it / add dependency
 
 Add the following dependency to your `project.cljs`:<br>
 [![Clojars Project](https://img.shields.io/clojars/v/re-frame-readfile-fx.svg)](https://clojars.org/re-frame-readfile-fx)
+
+### Usage
 
 See the following minimal code example or the [test.cljs](https://github.com/jtkDvlp/re-frame-readfile-fx/blob/master/test/re_frame_readfile_fx/test.cljs).
 
@@ -28,7 +30,7 @@ See the following minimal code example or the [test.cljs](https://github.com/jtk
                ;; via vector of strings for every single file
                ;; or nil for default (utf-8). nil also works
                ;; from within vector (for every single file)
-               :charsets ""
+               :charsets ["windows-1252" nil]
                ;; dispatched on success conjoined with read files
                :on-success [:your-success-event]
                ;; dispatched on error conjoined with read files
