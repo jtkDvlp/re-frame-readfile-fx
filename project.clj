@@ -1,4 +1,4 @@
-(defproject re-frame-readfile-fx "1.0.0-alpha"
+(defproject re-frame-readfile-fx "1.0.0-beta"
   :description "A re-frame effects handler for reading files via FileReader-Object"
   :url "https://github.com/jtkDvlp/re-frame-readfile-fx"
   :license {:name "MIT"}
