@@ -1,26 +1,45 @@
-(defproject re-frame-readfile-fx "1.0.0-beta"
-  :description "A re-frame effects handler for reading files via FileReader-Object"
-  :url "https://github.com/jtkDvlp/re-frame-readfile-fx"
-  :license {:name "MIT"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.229"]
+(defproject jtk-dvlp/re-frame-readfile-fx "1.0.0"
+  :description
+  "A re-frame effects handler for reading files via FileReader-Object"
 
-                 [re-frame "0.9.1"]]
+  :url
+  "https://github.com/jtkDvlp/re-frame-readfile-fx"
 
-  :min-lein-version "2.5.3"
+  :license
+  {:name "MIT"}
 
-  :source-paths ["src"]
-  :test-paths ["test"]
+  :min-lein-version
+  "2.5.3"
 
-  :clean-targets ^{:protect false} ["resources/public/js" "target"]
+  :source-paths
+  ["src"]
 
-  :plugins [[lein-cljsbuild "1.1.4" :exclusions [[org.clojure/clojure]]]
-            [lein-figwheel "0.5.0-1"]]
+  :clean-targets
+  ^{:protect false}
+  ["resources/public/js"
+   "target"]
 
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.8"]
-                                  [com.cemerick/piggieback "0.2.1"]]}}
+  :plugins
+  [[lein-cljsbuild "1.1.4"
+    :exclusions [[org.clojure/clojure]]]
+   [lein-figwheel "0.5.0-1"]]
 
-  :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+  :profiles
+  {:provided
+   {:dependencies
+    [[org.clojure/clojure "1.8.0"]
+     [org.clojure/clojurescript "1.9.229"]
+
+     [re-frame "0.9.1"]]}
+
+   :dev
+   {:dependencies
+    [[figwheel-sidecar "0.5.8"]
+     [com.cemerick/piggieback "0.2.1"]]}}
+
+  :repl-options
+  {:nrepl-middleware
+   [cemerick.piggieback/wrap-cljs-repl]}
 
   :cljsbuild
   {:builds
