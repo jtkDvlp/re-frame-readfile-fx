@@ -1,4 +1,4 @@
-(defproject jtk-dvlp/re-frame-readfile-fx "1.0.0"
+(defproject jtk-dvlp/re-frame-readfile-fx "2.0.0-SNAPSHOT"
   :description
   "A re-frame effects handler for reading files via FileReader-Object"
 
@@ -46,7 +46,7 @@
    [{:id "test"
      :source-paths ["src" "test"]
      :figwheel true
-     :compiler {:main re-frame-readfile-fx.test
+     :compiler {:main jtk-dvlp.re-frame.readfile-fx-test
                 :asset-path "js/test/out"
                 :output-to "resources/public/js/test/test.js"
                 :output-dir "resources/public/js/test/out"}}]})

@@ -5,6 +5,13 @@
 
 This [re-frame](https://github.com/Day8/re-frame) library contains an [FileReader-Object](https://developer.mozilla.org/docs/Web/API/FileReader) [effect handler](https://github.com/Day8/re-frame/tree/develop/docs). The handler can be addressed by `:readfile`.
 
+## Changelog
+
+### 2.0.0 (DRAFT)
+
+* Move package into ns `jtk-dvlp.re-frame`
+* Read files is a `map` of meta and content now.
+
 ## Getting started
 
 ### Get it / add dependency
@@ -14,12 +21,12 @@ Add the following dependency to your `project.cljs`:<br>
 
 ### Usage
 
-See the following minimal code example or the [test.cljs](https://github.com/jtkDvlp/re-frame-readfile-fx/blob/master/test/re_frame_readfile_fx/test.cljs).
+See the following minimal code example or the [test.cljs](https://github.com/jtkDvlp/re-frame-readfile-fx/blob/master/test/jtk_dvlp/re_frame/readfile_fx_test.cljs).
 
 ```clojure
 (ns your.project
   (:require [re-frame.core :as re-frame]
-            [re-frame-readfile-fx.core]))
+            [jtk-dvlp.re-frame.readfile-fx]))
 
 (re-frame/reg-event-fx
  :some-event
@@ -37,7 +44,7 @@ See the following minimal code example or the [test.cljs](https://github.com/jtk
                :on-error [:your-error-event]}}))
 ```
 
-How to get files from file-input see the [test.cljs](https://github.com/jtkDvlp/re-frame-readfile-fx/blob/master/test/re_frame_readfile_fx/test.cljs).
+How to get files from file-input see the [test.cljs](https://github.com/jtkDvlp/re-frame-readfile-fx/blob/master/test/jtk_dvlp/re_frame/readfile_fx_test.cljs).
 
 ## Appendix
 

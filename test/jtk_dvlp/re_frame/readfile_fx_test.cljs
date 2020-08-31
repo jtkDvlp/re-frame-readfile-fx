@@ -1,7 +1,8 @@
-(ns re-frame-readfile-fx.test
-  (:require [reagent.core :as reagent]
-            [re-frame.core :as re-frame]
-            [re-frame-readfile-fx.core]))
+(ns jtk-dvlp.re-frame.readfile-fx-test
+  (:require
+   [reagent.core :as reagent]
+   [re-frame.core :as re-frame]
+   [jtk-dvlp.re-frame.readfile-fx]))
 
 (defn- col->array
   [col]
@@ -23,10 +24,11 @@
 (re-frame/reg-event-fx
  :on-readfile
  (fn [_ [_ files]]
-   {:readfile {:files files
-               :charsets (map #(.-name %) files)
-               :on-success [:on-readfile-fx-success]
-               :on-error [:on-readfile-fx-error]}}))
+   {:readfile
+    {:files files
+     :charsets (map #(.-name %) files)
+     :on-success [:on-readfile-fx-success]
+     :on-error [:on-readfile-fx-error]}}))
 
 (defn view
   []

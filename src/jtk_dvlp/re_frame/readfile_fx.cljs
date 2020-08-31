@@ -1,18 +1,30 @@
-(ns re-frame-readfile-fx.core
-  (:require [cljs.core.async :as async]
-            [re-frame.core :as re-frame])
-  (:require-macros [cljs.core.async.macros :refer [go]]))
+(ns jtk-dvlp.re-frame.readfile-fx
+  x(:require-macros
+    [cljs.core.async.macros :refer [go]])
+
+  (:require
+   [cljs.core.async :as async]
+   [re-frame.core :as re-frame]))
+
 
 (defn- do-readfile!
   [file charset]
   (let [result (async/promise-chan)]
     (try
-      (let [reader
+      (let [meta
+            {:name (.-name file)
+             :size (.-size file)
+             :type (.-type file)
+             :last-modified (.-lastModified file)}
+
+            reader
             (js/FileReader.)
 
             on-loaded
             (fn [_]
-              (async/put! result (.-result reader))
+              (->> (.-result reader)
+                   (assoc meta :content)
+                   (async/put! result))
               (async/close! result))]
 
         (.addEventListener reader "load" on-loaded)
@@ -40,7 +52,7 @@
            contents
            (->> (mapv do-readfile! files charsets)
                 (async/map vector)
-                <!)
+                (async/<!))
 
            errors
            (filter :error contents)]
