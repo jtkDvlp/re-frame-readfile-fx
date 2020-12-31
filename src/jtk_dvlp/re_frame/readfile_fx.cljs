@@ -1,6 +1,6 @@
 (ns jtk-dvlp.re-frame.readfile-fx
-  x(:require-macros
-    [cljs.core.async.macros :refer [go]])
+  (:require-macros
+   [cljs.core.async.macros :refer [go]])
 
   (:require
    [cljs.core.async :as async]

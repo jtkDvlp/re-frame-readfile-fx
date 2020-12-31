@@ -16,37 +16,32 @@
 
   :clean-targets
   ^{:protect false}
-  ["resources/public/js"
-   "target"]
-
-  :plugins
-  [[lein-cljsbuild "1.1.4"
-    :exclusions [[org.clojure/clojure]]]
-   [lein-figwheel "0.5.0-1"]]
+  [:target-path]
 
   :profiles
   {:provided
    {:dependencies
-    [[org.clojure/clojure "1.8.0"]
-     [org.clojure/clojurescript "1.9.229"]
+    [[org.clojure/clojure "1.10.1"]
+     [org.clojure/clojurescript "1.10.773"]
 
-     [re-frame "0.9.1"]]}
+     [org.clojure/core.async "1.3.610"]
+
+     [re-frame "1.1.1"]]}
 
    :dev
-   {:dependencies
-    [[figwheel-sidecar "0.5.8"]
-     [com.cemerick/piggieback "0.2.1"]]}}
+   {:source-paths
+    ["src" "test"]
 
-  :repl-options
-  {:nrepl-middleware
-   [cemerick.piggieback/wrap-cljs-repl]}
+    :target-path
+    "target/dev"
 
-  :cljsbuild
-  {:builds
-   [{:id "test"
-     :source-paths ["src" "test"]
-     :figwheel true
-     :compiler {:main jtk-dvlp.re-frame.readfile-fx-test
-                :asset-path "js/test/out"
-                :output-to "resources/public/js/test/test.js"
-                :output-dir "resources/public/js/test/out"}}]})
+    :resource-paths
+    ["resources" "target/dev"]
+
+    :dependencies
+    [[com.bhauman/figwheel-main "0.2.11"]
+     [cider/piggieback "0.4.0"]]
+
+    :repl-options
+    {:nrepl-middleware
+     [cider.piggieback/wrap-cljs-repl]}}})
