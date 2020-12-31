@@ -7,10 +7,12 @@ This [re-frame](https://github.com/Day8/re-frame) library contains an [FileReade
 
 ## Changelog
 
-### 2.0.0 (DRAFT)
+### 2.0.0
 
 * Move package into ns `jtk-dvlp.re-frame`
 * Read files is a `map` of meta and content now.
+* Clean up project.clj
+* Move to figwheel-main for dev and test
 
 ## Getting started
 
