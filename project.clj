@@ -1,4 +1,4 @@
-(defproject jtk-dvlp/re-frame-readfile-fx "2.0.0-SNAPSHOT"
+(defproject jtk-dvlp/re-frame-readfile-fx "2.0.1-SNAPSHOT"
   :description
   "A re-frame effects handler for reading files via FileReader-Object"
 
