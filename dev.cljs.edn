@@ -1,0 +1,8 @@
+^{:watch-dirs
+  ["src" "test"]}
+
+{:output-to
+ "target/dev/public/main.js"
+
+ :main
+ jtk-dvlp.re-frame.readfile-fx-test}

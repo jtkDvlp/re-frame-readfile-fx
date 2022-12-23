@@ -12,23 +12,23 @@
       (.call col)))
 
 (re-frame/reg-event-fx
- :on-readfile-fx-success
- (fn [_ [_ result]]
-   (.debug js/console "success" result)))
+  :on-readfile-fx-success
+  (fn [_ [_ result]]
+    (.debug js/console "success" (clj->js result))))
 
 (re-frame/reg-event-fx
- :on-readfile-fx-error
- (fn [_ [_ result]]
-   (.debug js/console "error" result)))
+  :on-readfile-fx-error
+  (fn [_ [_ result]]
+    (.debug js/console "error" (clj->js result))))
 
 (re-frame/reg-event-fx
- :on-readfile
- (fn [_ [_ files]]
-   {:readfile
-    {:files files
-     :charsets (map #(.-name %) files)
-     :on-success [:on-readfile-fx-success]
-     :on-error [:on-readfile-fx-error]}}))
+  :on-readfile
+  (fn [_ [_ files]]
+    {:readfile
+     {:files files
+      :charsets (map #(.-name %) files)
+      :on-success [:on-readfile-fx-success]
+      :on-error [:on-readfile-fx-error]}}))
 
 (defn view
   []
