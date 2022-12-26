@@ -1,6 +1,7 @@
 (ns jtk-dvlp.re-frame.readfile-fx
   (:require-macros
-   [cljs.core.async.macros :refer [go]])
+    [cljs.core.async.macros :refer [go]])
+
 
   (:require
    [cljs.core.async :as async]
@@ -8,7 +9,13 @@
 
 
 (defn- do-readfile!
-  [file charset]
+  "FileReader will read file per optional named parameter :read-as which
+  can have the following values
+  :array-buffer
+  :binary-string
+  :data-url
+  :text (default)"
+  [file charset & {:keys [read-as] :or {read-as :text}}]
   (let [result (async/promise-chan)]
     (try
       (let [meta
@@ -29,9 +36,20 @@
 
         (.addEventListener reader "load" on-loaded)
 
-        (if charset
-          (.readAsText reader file charset)
-          (.readAsText reader file)))
+        (case read-as
+          :array-buffer
+          (.readAsArrayBuffer reader file)
+          
+          :binary-string
+          (.readAsBinaryString reader file)
+          
+          :data-url
+          (.readAsDataURL reader file)
+          
+          :text
+          (if charset
+            (.readAsText reader file charset)
+            (.readAsText reader file))))
 
       (catch js/Object error
         (async/put! result {:error error :file file})
@@ -42,7 +60,7 @@
 (re-frame/reg-fx
  :readfile
  (fn readfile-fx
-   [{:keys [files charsets on-success on-error]}]
+   [{:keys [files charsets on-success on-error read-as] :or {read-as :text}}]
    (go
      (let [charsets
            (if (or (string? charsets) (nil? charsets))
@@ -50,7 +68,7 @@
              charsets)
 
            contents
-           (->> (mapv do-readfile! files charsets)
+           (->> (mapv do-readfile! files charsets (repeat :read-as) (repeat read-as))
                 (async/map vector)
                 (async/<!))
 
