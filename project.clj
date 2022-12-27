@@ -1,4 +1,4 @@
-(defproject tallyfor/re-frame-readfile-fx "2.0.1-SNAPSHOT"
+(defproject tallyfor/re-frame-readfile-fx "2.0.2-SNAPSHOT"
   :description
   "A re-frame effects handler for reading files via FileReader-Object"
 
