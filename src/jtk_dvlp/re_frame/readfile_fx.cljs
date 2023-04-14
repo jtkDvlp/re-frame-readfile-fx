@@ -4,8 +4,8 @@
 
 
   (:require
-   [cljs.core.async :as async]
-   [re-frame.core :as re-frame]))
+    [cljs.core.async :as async]
+    [re-frame.core :as re-frame]))
 
 
 (defn- do-readfile!
@@ -19,9 +19,9 @@
   (let [result (async/promise-chan)]
     (try
       (let [meta
-            {:name (.-name file)
-             :size (.-size file)
-             :type (.-type file)
+            {:name          (.-name file)
+             :size          (.-size file)
+             :type          (.-type file)
              :last-modified (.-lastModified file)}
 
             reader
@@ -39,13 +39,13 @@
         (case read-as
           :array-buffer
           (.readAsArrayBuffer reader file)
-          
+
           :binary-string
           (.readAsBinaryString reader file)
-          
+
           :data-url
           (.readAsDataURL reader file)
-          
+
           :text
           (if charset
             (.readAsText reader file charset)
@@ -58,23 +58,23 @@
     result))
 
 (re-frame/reg-fx
- :readfile
- (fn readfile-fx
-   [{:keys [files charsets on-success on-error read-as] :or {read-as :text}}]
-   (go
-     (let [charsets
-           (if (or (string? charsets) (nil? charsets))
-             (repeat charsets)
-             charsets)
+  :readfile
+  (fn readfile-fx
+    [{:keys [files charsets channel on-success on-error read-as] :or {read-as :text}}]
+    (go
+      (let [charsets
+            (if (or (string? charsets) (nil? charsets))
+              (repeat charsets)
+              charsets)
 
-           contents
-           (->> (mapv do-readfile! files charsets (repeat :read-as) (repeat read-as))
-                (async/map vector)
-                (async/<!))
+            contents
+            (->> (mapv do-readfile! files charsets (repeat :read-as) (repeat read-as))
+                 (async/map vector)
+                 (async/<!))
 
-           errors
-           (filter :error contents)]
+            errors
+            (filter :error contents)]
 
-       (if (seq errors)
-         (re-frame/dispatch (conj on-error contents))
-         (re-frame/dispatch (conj on-success contents)))))))
+        (if (seq errors)
+            (re-frame/dispatch (conj on-error contents channel))
+            (re-frame/dispatch (conj on-success contents channel)))))))
